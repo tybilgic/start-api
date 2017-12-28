@@ -3,11 +3,12 @@ const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
-const requireUserAuthentication = () => {
-  console.log('you shall login');
+const checkUserAuthentication = (req, res, next) => {
+  console.log('checking auth...');
+  next();
 };
 
-router.all('*', requireUserAuthentication);
+router.use(checkUserAuthentication);
 
 /* GET root api. */
 router.get('/', (req, res) => {

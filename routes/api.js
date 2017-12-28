@@ -4,11 +4,21 @@ const jwt = require('jsonwebtoken');
 const router = express.Router();
 
 const requireUserAuthentication = (req, res, next) => {
-  console.log('you shall pass');
-  next();
+  const authHeader = req.headers.authorization;
+  if (typeof authHeader !== 'undefined') {
+    console.log(authHeader);
+    next();
+  } else {
+    console.log('header not found');
+    const err = new Error();
+    err.status = 403;
+    err.message = 'Forbidden';
+    next(err);
+  }
 };
 
-router.all('*', requireUserAuthentication, (req, res, next) => next());
+// Require authentication for every request made to api
+router.use(requireUserAuthentication);
 
 /* GET root api. */
 router.get('/', (req, res) => {

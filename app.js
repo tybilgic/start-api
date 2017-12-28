@@ -61,6 +61,4 @@ app.use((err, req, res, next) => {
   next();
 });
 
-app.use(() => console.log('finito'));
-
 module.exports = app;
