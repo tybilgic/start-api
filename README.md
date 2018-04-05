@@ -1,2 +1,3 @@
-# mysql-sequelize-express-api
-api boilerplate
+# start-api
+A starter pack for your apis.
+Express.js & Sequelize.js
